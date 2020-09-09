@@ -1,0 +1,50 @@
+﻿
+@model Bid
+
+    <div id="home-section" class="dark-overlay">
+        <div class="home-inner container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h3 class="text-light">Оставьте нам заявку</h3>
+                    <p class="lead text-light">Мы обязательно свяжемся с вами и подробно обсудим Ваш вопрос!</p>
+                    <form asp-action="Index" method="post">
+                        <div class="input-group input-group-lg mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            <input asp-for="name" class="form-control" type="text" placeholder="Как Вас зовут">
+                        </div>
+
+                        <div class="input-group input-group-lg mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </div>
+                            <input asp-for="email" class="form-control" type="email" placeholder="Введите email">
+                        </div>
+
+                        <div class="input-group input-group-lg mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </span>
+                            </div>
+                            <textarea asp-for="content" class="form-control" placeholder="Суть вопроса" rows="5"></textarea>
+                        </div>
+                        <input type="hidden" asp-for="create_date" value="@DateTime.Today" />
+                        <input type="hidden" asp-for="BidStatusId" value="1" />
+
+                        <input type="submit" value="Отправить" class="btn btn-primary btn-block btn-lg">
+                    </form>
+                </div>
+
+                <div class="col-lg-3 align-self-center">
+                    <img src="img/mlogo.png" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+
+    </div>

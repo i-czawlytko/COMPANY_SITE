@@ -1,0 +1,15 @@
+﻿@model IEnumerable<AppUser>
+
+    <div class="home-inner container">
+        <table class="table table-sm table-bordered">
+            @foreach (AppUser user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                </tr>
+
+            }
+        </table>
+    </div>

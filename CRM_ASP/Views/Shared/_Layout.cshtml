@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- inside <head> -->
+    <link rel="stylesheet" href="~/vendor.min.css" />
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+    <!-- at the end of <body> -->
+    <script src="~/vendor.min.js"></script>
+    <title>CRM project</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top border-bottom" id="main-nav">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">CRM project</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    @if (User?.Identity?.IsAuthenticated ?? false)
+                    {
+                        <li class="nav-item">
+                            <a asp-action="All" asp-controller="Bid" class="nav-link">Заявки</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a asp-action="List" asp-controller="Offer" class="nav-link">Услуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="List" asp-controller="Projects" class="nav-link">Проекты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Articles" asp-controller="Blog" class="nav-link">Статьи</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Index" asp-controller="About" class="nav-link">Контакты</a>
+                    </li>
+                    @if (User?.Identity?.IsAuthenticated ?? false)
+                    {
+                        <li class="nav-item">
+                            <a asp-action="Logout" asp-controller="Account" class="nav-link">Выйти</a>
+                        </li>
+                    }
+                    @if (!User?.Identity?.IsAuthenticated ?? false)
+                    {
+                        <li class="nav-item">
+                            <a asp-action="Login" asp-controller="Account" class="nav-link">Войти</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+
+    <div id="main-footer" class="row-fluid text-center p-4 col bg-dark border-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            Copyright &copy;
+                            <span id="year"></span> CRM project
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the current year for the copyright
+        $('#year').text(new Date().getFullYear());
+    </script>
+
+    <script>
+        if ($(document).height() <= $(window).height())
+        $("#main-footer").addClass("fixed-bottom");
+    </script>
+</body>
+</html>

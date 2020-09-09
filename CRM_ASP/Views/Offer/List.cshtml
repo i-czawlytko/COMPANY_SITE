@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Offer>
+    <div class="home-inner container">
+        <div id="accordion">
+
+            @foreach (var of in Model)
+            {
+                <div class="card">
+                    <div class="card-header">
+                        <h5>
+                            <a href="#@of.id" data-parent="#accordion" data-toggle="collapse">
+                                @of.name
+                            </a>
+                        </h5>
+                    </div>
+
+                    <div id="@of.id" class="collapse">
+                        <div class="card-body">
+                            @of.content
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>

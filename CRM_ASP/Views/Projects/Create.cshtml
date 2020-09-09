@@ -1,0 +1,29 @@
+﻿@model Project
+<div class="home-inner container">
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <!-- TEXT FIELD GROUPS -->
+        <div class="form-group">
+            <label>Название</label>
+            <input asp-for="name" class="form-control" type="text" placeholder="Введите название">
+        </div>
+        <div class="form-group">
+            <label>Тема</label>
+            <input asp-for="thread" class="form-control" type="text" placeholder="Введите тему">
+        </div>
+
+        <!-- TEXTAREA -->
+        <div class="form-group">
+            <label>Содержание</label>
+            <textarea asp-for="content" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Изображение</label>
+            <input name="fileData" class="form-control" type="file" placeholder="Выберите файл">
+        </div>
+
+        <br>
+
+        <button class="btn btn-primary btn-block" type="submit">Добавить</button>
+    </form>
+</div>

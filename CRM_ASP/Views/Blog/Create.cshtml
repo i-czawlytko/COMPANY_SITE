@@ -1,0 +1,35 @@
+﻿@model Article
+    <div class="home-inner container">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <!-- TEXT FIELD GROUPS -->
+            <input type="hidden" asp-for="create_date" value="@DateTime.Today" />
+            <div class="form-group">
+                <label>Тема</label>
+                <input asp-for="thread" class="form-control" type="text" placeholder="Напишите тему статьи">
+            </div>
+            <div class="form-group">
+                <label>Автор</label>
+                <input asp-for="author" class="form-control" type="text" placeholder="Как зовут автора">
+            </div>
+
+            <div class="form-group">
+                <label>Краткое содержание</label>
+                <input asp-for="brief" class="form-control" type="text" placeholder="Коротко о статье">
+            </div>
+
+            <!-- TEXTAREA -->
+            <div class="form-group">
+                <label>Содержание</label>
+                <textarea asp-for="content" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Изображение</label>
+                <input name="fileData" class="form-control" type="file" placeholder="Выберите файл">
+            </div>
+
+            <br>
+
+            <button class="btn btn-primary btn-block" type="submit">Опубликовать</button>
+        </form>
+    </div>
