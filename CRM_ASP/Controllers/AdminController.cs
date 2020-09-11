@@ -9,8 +9,8 @@ namespace CRM_ASP.Controllers
     [Authorize]
     public class AdminController : Controller
     {
-        private UserManager<AppUser> userManager;
-        public AdminController(UserManager<AppUser> usrMrg)
+        private UserManager<IdentityUser> userManager;
+        public AdminController(UserManager<IdentityUser> usrMrg)
         {
             userManager = usrMrg;
         }
@@ -23,7 +23,7 @@ namespace CRM_ASP.Controllers
         {
             if(ModelState.IsValid)
             {
-                AppUser user = new AppUser
+                IdentityUser user = new IdentityUser
                 {
                     UserName = model.Name,
                     Email = model.Email

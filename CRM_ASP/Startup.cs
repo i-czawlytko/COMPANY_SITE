@@ -29,7 +29,7 @@ namespace CRM_ASP
                 Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<AppUser, IdentityRole>(opts =>
+            services.AddIdentity<IdentityUser, IdentityRole>(opts =>
             {
                 opts.Password.RequiredLength = 5;
                 opts.Password.RequireDigit = false;
@@ -60,6 +60,7 @@ namespace CRM_ASP
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             SeedData.EnsurePopulated(app,env);
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

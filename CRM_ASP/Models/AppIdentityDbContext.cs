@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace CRM_ASP.Models
 {
-    public class AppIdentityDbContext:IdentityDbContext<AppUser>
+    public class AppIdentityDbContext:IdentityDbContext<IdentityUser>
     {
         public AppIdentityDbContext(DbContextOptions<AppIdentityDbContext> options) : base(options) { }
     }

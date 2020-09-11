@@ -12,9 +12,9 @@ namespace CRM_ASP.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private UserManager<AppUser> userManager;
-        private SignInManager<AppUser> signInManager;
-        public AccountController(UserManager<AppUser> userMgr, SignInManager<AppUser> signInMgr)
+        private UserManager<IdentityUser> userManager;
+        private SignInManager<IdentityUser> signInManager;
+        public AccountController(UserManager<IdentityUser> userMgr, SignInManager<IdentityUser> signInMgr)
         {
             userManager = userMgr;
             signInManager = signInMgr;
@@ -33,7 +33,7 @@ namespace CRM_ASP.Controllers
         {
             if(ModelState.IsValid)
             {
-                AppUser user = await userManager.FindByNameAsync(details.Name);
+                IdentityUser user = await userManager.FindByNameAsync(details.Name);
                 if (user != null)
                 {
                     await signInManager.SignOutAsync();

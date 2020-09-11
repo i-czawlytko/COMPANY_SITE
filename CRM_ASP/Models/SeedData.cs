@@ -30,9 +30,45 @@ namespace CRM_ASP.Models
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
-                context.Database.Migrate();
+                //context.Database.Migrate();
+                if (!context.Statuses.Any())
+                {
+                    context.Statuses.AddRange(
+                        new BidStatus
+                        {
+                            name="Получена",
+                            description="Заявка была получена",
+                            color_code= "#8FBC8F"
+                        },
+                        new BidStatus
+                        {
+                            name = "В работе",
+                            description = "Заявка находится в работе",
+                            color_code = "#008B8B"
+                        },
+                        new BidStatus
+                        {
+                            name = "Выполнена",
+                            description = "Заявка была выполнена",
+                            color_code = "#4682B4"
+                        },
+                        new BidStatus
+                        {
+                            name = "Отклонена",
+                            description = "Заявка была отклонена",
+                            color_code = "#F0E68C"
+                        },
+                        new BidStatus
+                        {
+                            name = "Отменена",
+                            description = "Заявка была отменена",
+                            color_code = "#FFA07A"
+                        }
+                    );
+                    context.SaveChanges();
+                }
 
-                if (!context.Bids.Any())
+                if (!context.Bids.Any()&& !context.Projects.Any() && !context.Articles.Any() && !context.Offers.Any())
                 {
                     context.Bids.AddRange(
                         new Bid
@@ -81,10 +117,6 @@ namespace CRM_ASP.Models
                             " которое уже учится в университетах. Я говорю о потере памяти."
                         }
                     );
-                    context.SaveChanges();
-                }
-                if (!context.Projects.Any())
-                {
                     context.Projects.AddRange(
                         new Project
                         {
@@ -106,13 +138,8 @@ namespace CRM_ASP.Models
                             thread = "Исследования в области биологии",
                             imageData = GetImageData(env, "/img/samples/prj_umbrella.jpg"),
                             content = "Исследования продолжаются"
-                        }
-                        
+                        }                        
                     );
-                    context.SaveChanges();
-                }
-                if (!context.Articles.Any())
-                {
                     context.Articles.AddRange(
                         new Article
                         {
@@ -130,7 +157,7 @@ namespace CRM_ASP.Models
                             Конечно, из-за этого мои деловые решения становятся неуверенными, мой голос нетвердым. Что делает Гаррас, когда я говорю по телефону? Если бы я захотел сильно преувеличить — а это часто приходится делать, чтобы обрести ясность,- я мог бы сказать: Гаррасу телефон не нужен, он пользуется моим, он придвинул к стенке свой диванчик и слушает, а я, когда раздается звонок, должен бежать к телефону, выслушивать желания клиента, принимать важные решения, истово уговаривать — но тем самым прежде всего поневоле давать отчет Гаррасу через стенку.
 
                             Может быть, он даже не дожидается конца разговора, а поднимается после тех слов, которые достаточно прояснили ему дело, мечется по своему обыкновению по городу и, прежде чем я по.вешу трубку, уже, может быть, начинает действовать против меня. ",
-
+                            create_date = new DateTime(2020, 5, 20)
                         },
                         new Article
                         {
@@ -148,13 +175,7 @@ namespace CRM_ASP.Models
                             (В черновике приписка: жизнь победила смерть, где именительный падеж, а где винительный).",
                             create_date = new DateTime(2020,5,10)
                         }
-
                     );
-                    context.SaveChanges();
-                }
-
-                if (!context.Offers.Any())
-                {
                     context.Offers.AddRange(
                         new Offer
                         {
@@ -176,7 +197,6 @@ namespace CRM_ASP.Models
                             name = "Техническая поддержка",
                             content = "Чисто техническая поддержка"
                         }
-
                     );
                     context.SaveChanges();
                 }
