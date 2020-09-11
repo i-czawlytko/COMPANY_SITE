@@ -24,6 +24,7 @@ namespace CRM_ASP
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddScoped<AppDbContext>();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(
@@ -58,6 +59,7 @@ namespace CRM_ASP
                 routes.MapRoute(name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            SeedData.EnsurePopulated(app,env);
         }
     }
 }
