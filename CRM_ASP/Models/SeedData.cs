@@ -30,7 +30,7 @@ namespace CRM_ASP.Models
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
-                //context.Database.Migrate();
+                context.Database.Migrate();
                 if (!context.Statuses.Any())
                 {
                     context.Statuses.AddRange(

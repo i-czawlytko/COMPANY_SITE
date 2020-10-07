@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRM_ASP.Models
 {
@@ -13,8 +14,10 @@ namespace CRM_ASP.Models
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
+                var context = serviceScope.ServiceProvider.GetService<AppIdentityDbContext>();
+                context.Database.Migrate();
                 UserManager<IdentityUser> userManager = serviceScope.ServiceProvider.GetService<UserManager<IdentityUser>>();
-                //UserManager<IdentityUser> userManager = app.ApplicationServices.GetRequiredService<UserManager<IdentityUser>>();
+                
                 IdentityUser user = await userManager.FindByIdAsync(adminUser);
                 if (user == null)
                 {
