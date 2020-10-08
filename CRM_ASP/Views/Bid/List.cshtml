@@ -94,16 +94,19 @@
     </div>
 
     <div class="bg-light">
-        <div class="container mt-2">
+        <div class="container pt-5">
             <div class="row">
                 <div class="col">
                     <div class="card-columns">
                         @foreach (var b in Model.Bids)
                         {
+
                             <div class="card border-dark mb-3">
-                                <div class="card-header">
-                                    @b.create_date.ToShortDateString(), @b.create_date.DayOfWeek
-                                </div>
+                                <a asp-action="Show" asp-route-id="@b.id">
+                                    <div class="card-header">
+                                        @b.create_date.ToShortDateString(), @b.create_date.DayOfWeek
+                                    </div>
+                                </a>
                                 <div class="card-body" style="background-color: @b.status.color_code">
                                     <h4 class="card-title">@b.name</h4>
                                     <p class="card-text">@b.email</p>
@@ -127,36 +130,38 @@
                                     </form>
                                 </div>
                             </div>
+
                         }
                     </div>
 
                 </div>
             </div>
 
-
-            @if (ViewBag.ActionName == "All")
-            {
-                <div page-model="@Model.PagingInfo" page-action="@ViewBag.ActionName" page-classes-enabled="true" page-class="btn"
-                     page-class-normal="btn-secondary" page-class-selected="btn-primary" class="btn-group pull-right m-1"
-                     page-url-StatusId="@Model.FilterInfo.BidStatusId"></div>
-            }
-            else if (ViewBag.ActionName == "ConcreteDay")
-            {
-                <div page-model="@Model.PagingInfo" page-action="@ViewBag.ActionName" page-classes-enabled="true" page-class="btn"
-                     page-class-normal="btn-secondary" page-class-selected="btn-primary" class="btn-group pull-right m-1"
-                     page-url-date_ofset="@Model.FilterInfo.DateOfset" page-url-StatusId="@Model.FilterInfo.BidStatusId"></div>
-            }
-            else if (ViewBag.ActionName == "LastDays")
-            {
-                <div page-model="@Model.PagingInfo" page-action="@ViewBag.ActionName" page-classes-enabled="true" page-class="btn"
-                     page-class-normal="btn-secondary" page-class-selected="btn-primary" class="btn-group pull-right m-1"
-                     page-url-days_left="@Model.FilterInfo.DaysLeft" page-url-StatusId="@Model.FilterInfo.BidStatusId"></div>
-            }
-            else if (ViewBag.ActionName == "DateRange")
-            {
-                <div page-model="@Model.PagingInfo" page-action="@ViewBag.ActionName" page-classes-enabled="true" page-class="btn"
-                     page-class-normal="btn-secondary" page-class-selected="btn-primary" class="btn-group pull-right m-1"
-                     page-url-left_date="@Model.FilterInfo.LeftDate" page-url-right_date="@Model.FilterInfo.RightDate" page-url-StatusId="@Model.FilterInfo.BidStatusId"></div>
-            }
+                <div class="container pb-3">
+                    @if (ViewBag.ActionName == "All")
+                    {
+                        <div page-model="@Model.PagingInfo" page-action="@ViewBag.ActionName" page-classes-enabled="true" page-class="btn"
+                                page-class-normal="btn-secondary" page-class-selected="btn-primary" class="btn-group pull-right m-1"
+                                page-url-StatusId="@Model.FilterInfo.BidStatusId"></div>
+                    }
+                    else if (ViewBag.ActionName == "ConcreteDay")
+                    {
+                        <div page-model="@Model.PagingInfo" page-action="@ViewBag.ActionName" page-classes-enabled="true" page-class="btn"
+                                page-class-normal="btn-secondary" page-class-selected="btn-primary" class="btn-group pull-right m-1"
+                                page-url-date_ofset="@Model.FilterInfo.DateOfset" page-url-StatusId="@Model.FilterInfo.BidStatusId"></div>
+                    }
+                    else if (ViewBag.ActionName == "LastDays")
+                    {
+                        <div page-model="@Model.PagingInfo" page-action="@ViewBag.ActionName" page-classes-enabled="true" page-class="btn"
+                                page-class-normal="btn-secondary" page-class-selected="btn-primary" class="btn-group pull-right m-1"
+                                page-url-days_left="@Model.FilterInfo.DaysLeft" page-url-StatusId="@Model.FilterInfo.BidStatusId"></div>
+                    }
+                    else if (ViewBag.ActionName == "DateRange")
+                    {
+                        <div page-model="@Model.PagingInfo" page-action="@ViewBag.ActionName" page-classes-enabled="true" page-class="btn"
+                                page-class-normal="btn-secondary" page-class-selected="btn-primary" class="btn-group pull-right m-1"
+                                page-url-left_date="@Model.FilterInfo.LeftDate" page-url-right_date="@Model.FilterInfo.RightDate" page-url-StatusId="@Model.FilterInfo.BidStatusId"></div>
+                    }
+                </div>
+            </div>
         </div>
-    </div>

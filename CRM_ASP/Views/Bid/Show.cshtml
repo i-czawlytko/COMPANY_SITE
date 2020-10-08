@@ -1,0 +1,15 @@
+﻿@model Bid
+
+<div class="home-inner container">
+    <div class="col-8 border-primary">
+        <h1 class="h3 text-uppercase">@Model.name</h1>
+        <h1 class="h3 text-uppercase">@Model.email</h1>
+        <hr />
+        <p>
+            @Model.content
+        </p>
+        <hr />
+        <p class="text-right h4 text-uppercase">@Model.create_date.ToShortDateString(), @Model.create_date.ToShortTimeString()</p>
+    </div>
+
+</div>

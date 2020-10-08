@@ -26,7 +26,12 @@ namespace CRM_ASP.Controllers
 
         }
 
-       
+        public IActionResult Show(int id)
+        {
+            var bid = repository.Bids.FirstOrDefault(a => a.id == id);
+            return View(bid);
+        }
+
         public IActionResult All(int? StatusId,int productPage = 1)
         {
             var r_url = HttpContext.Request.PathAndQuery();
